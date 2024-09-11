@@ -1,0 +1,37 @@
+#include <fstream>
+
+std::ifstream fin("fiboverif1.in");
+std::ofstream fout("fiboverif1.out");
+
+bool is_fibo;
+int a, b;
+
+void fibo(int number, int a, int b){
+    if(a == number || b == number || a + b == number){
+        is_fibo = true;
+        return;
+    }
+    else if(a + b > number){
+        return;
+    }
+    else{
+        fibo(number, b, a + b);
+    }
+}
+
+int main()
+{
+    int n;
+    fin >> n;
+    
+    int number;
+    while(fin >> number){
+        is_fibo = false;
+        a = 1, b = 1;
+        fibo(number, a, b);
+        if(is_fibo)
+            fout << number << ' ';
+    }
+
+    return 0;
+}
